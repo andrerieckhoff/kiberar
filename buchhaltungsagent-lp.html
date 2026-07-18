@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landingpitch-Übung — Buchhaltungsagent</title>
+<style>
+  :root{
+    --blue:#0084FF;
+    --deep-blue:#0066CC;
+    --cyan:#00BCD4;
+    --bright-cyan:#00D4FF;
+    --green:#06D6A0;
+    --ink:#1a1a2e;
+    --deep-space:#0a0e27;
+    --slate:#5a6c7d;
+    --mist:#f0f4f8;
+    --sky:#E0F7FF;
+    --paper:#ffffff;
+    --nav-h:72px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  .container{max-width:840px;margin:0 auto;padding:0 24px;}
+  section[id]{scroll-margin-top:calc(var(--nav-h) + 14px);}
+
+  /* progressive enhancement: fully visible without JS */
+  .reveal{opacity:1;transform:none;}
+  html.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  html.js .reveal.is-visible{opacity:1;transform:none;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:100;height:var(--nav-h);
+    display:flex;align-items:center;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(0,132,255,.08);
+  }
+  .nav-inner{
+    width:100%;max-width:1080px;margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .logo{font-size:18px;font-weight:800;letter-spacing:-0.01em;white-space:nowrap;}
+  .logo .kiber{color:var(--blue);}
+  .logo .ar{background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  nav.links{display:flex;align-items:center;gap:28px;}
+  nav.links a{font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;position:relative;padding:4px 0;}
+  nav.links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+  }
+  nav.links a:hover::after{transform:scaleX(1);}
+
+  .btn{
+    position:relative;overflow:hidden;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    border:none;cursor:pointer;border-radius:50px;
+    font-weight:600;text-decoration:none;white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn::before{
+    content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+    background:linear-gradient(115deg, transparent, rgba(255,255,255,.6), transparent);
+    transform:skewX(-20deg);opacity:0;transition:opacity .2s ease;
+  }
+  .btn:hover::before{opacity:1;animation:btn-sparkle .8s ease forwards;}
+  @keyframes btn-sparkle{from{transform:skewX(-20deg) translateX(0);}to{transform:skewX(-20deg) translateX(340%);}}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;box-shadow:0 8px 22px rgba(0,132,255,.3);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,132,255,.4);}
+  .btn-nav{padding:10px 22px;font-size:14px;}
+  .btn-hero{padding:16px 32px;font-size:17px;}
+  .btn-white{background:#fff;color:var(--blue);box-shadow:0 12px 30px rgba(0,0,0,.16);}
+  .btn-white:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(0,0,0,.2);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:88px 0 96px;text-align:center;
+    background:linear-gradient(135deg,#0066CC 0%, #0084FF 45%, #00BCD4 100%);
+  }
+  .hero-blob-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+  .hero-blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.4;}
+  .hero-blob.b1{width:440px;height:440px;top:-180px;left:-140px;background:var(--bright-cyan);animation:drift1 20s ease-in-out infinite;}
+  .hero-blob.b2{width:380px;height:380px;bottom:-180px;right:-120px;background:var(--green);opacity:.32;animation:drift2 24s ease-in-out infinite;}
+  @keyframes drift1{0%,100%{transform:translate(0,0);}50%{transform:translate(50px,30px);}}
+  @keyframes drift2{0%,100%{transform:translate(0,0);}50%{transform:translate(-40px,-30px);}}
+  .hero-inner{position:relative;z-index:2;}
+  h1{
+    font-size:50px;font-weight:800;line-height:1.12;letter-spacing:-0.02em;
+    color:#fff;margin:0 0 24px;max-width:700px;margin-left:auto;margin-right:auto;
+  }
+  .swash-word{position:relative;white-space:nowrap;display:inline-block;}
+  .swash-svg{position:absolute;left:-3%;bottom:-0.08em;width:106%;height:0.22em;overflow:visible;pointer-events:none;}
+  .swash-path{stroke-dasharray:1;stroke-dashoffset:0;}
+  html.js .swash-path{stroke-dashoffset:1;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);}
+  html.js .swash-path.is-drawn{stroke-dashoffset:0;}
+  .hero-promise{
+    font-size:18px;font-weight:500;line-height:1.6;
+    color:rgba(255,255,255,.92);max-width:560px;margin:0 auto 40px;
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{padding:76px 0;}
+  .kicker{
+    display:block;text-align:center;font-size:12px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;
+  }
+  h2{font-size:32px;font-weight:700;letter-spacing:-0.01em;text-align:center;margin:0 0 44px;color:var(--ink);}
+
+  /* ---------- BENEFITS ---------- */
+  .benefits{background:var(--mist);}
+  .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .benefit-card{
+    background:var(--paper);border-radius:20px;padding:32px 26px;text-align:center;
+    box-shadow:0 8px 24px rgba(0,132,255,.1);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .benefit-card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(0,132,255,.16);}
+  .benefit-check{
+    width:44px;height:44px;border-radius:50%;margin:0 auto 18px;
+    background:linear-gradient(135deg,var(--green),var(--cyan));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .benefit-check svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+  .benefit-check path{stroke-dasharray:1;stroke-dashoffset:0;}
+  html.js .benefit-check path{stroke-dashoffset:1;transition:stroke-dashoffset .6s ease;}
+  html.js .benefit-check path.is-drawn{stroke-dashoffset:0;}
+  .benefit-card p{font-size:16px;font-weight:600;color:var(--ink);line-height:1.5;margin:0;}
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial-card{
+    max-width:600px;margin:0 auto;background:var(--paper);
+    border-radius:24px;padding:40px;text-align:center;
+    box-shadow:0 8px 24px rgba(0,132,255,.1);
+  }
+  .quote-icon{width:30px;height:30px;margin:0 auto 20px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;opacity:.5;}
+  .testimonial-card p.quote{font-size:18px;line-height:1.6;color:var(--ink);margin:0 0 20px;}
+  .t-name{font-size:14px;font-weight:700;color:var(--ink);margin:0;}
+  .t-role{font-size:13px;color:var(--slate);margin:0;}
+
+  /* ---------- OBJECTION KILLER ---------- */
+  .bridge-box{
+    display:flex;align-items:center;gap:20px;max-width:700px;margin:0 auto;
+    background:linear-gradient(135deg,rgba(6,214,160,.08),rgba(0,132,255,.06));
+    border:1.5px solid rgba(6,214,160,.3);border-radius:20px;padding:28px 32px;
+  }
+  .bridge-icon{
+    width:44px;height:44px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--green),var(--cyan));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .bridge-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+  .bridge-box p{font-size:17px;font-weight:600;color:var(--ink);margin:0;line-height:1.5;}
+
+  /* ---------- FAQ ---------- */
+  .faq-wrap{max-width:680px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--mist);}
+  .faq-item summary{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:20px 4px;font-size:16px;font-weight:700;color:var(--ink);
+    cursor:pointer;list-style:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-plus{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--mist);
+    position:relative;transition:transform .3s ease, background .3s ease;
+  }
+  .faq-plus::before,.faq-plus::after{content:"";position:absolute;top:50%;left:50%;background:var(--blue);border-radius:2px;}
+  .faq-plus::before{width:11px;height:2px;transform:translate(-50%,-50%);}
+  .faq-plus::after{width:2px;height:11px;transform:translate(-50%,-50%);transition:transform .3s ease;}
+  .faq-item[open] .faq-plus{background:var(--blue);}
+  .faq-item[open] .faq-plus::before,.faq-item[open] .faq-plus::after{background:#fff;}
+  .faq-item[open] .faq-plus::after{transform:translate(-50%,-50%) rotate(90deg) scaleY(0);}
+  .faq-answer{padding:0 4px 20px;font-size:15px;color:var(--slate);line-height:1.65;margin:0;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background:linear-gradient(135deg,#0066CC 0%, #0084FF 50%, #00BCD4 100%);
+    text-align:center;
+  }
+  .final-cta p{font-size:15px;color:rgba(255,255,255,.85);margin:0 0 24px;}
+
+  /* ---------- LEAD FORM (echtes CleverReach-Formular eingebettet) ---------- */
+  .lead-form-wrap{background:var(--mist);}
+  .lead-form-card{
+    max-width:480px;margin:0 auto;background:var(--paper);
+    border-radius:24px;padding:40px;text-align:center;
+    box-shadow:0 8px 24px rgba(0,132,255,.1);
+  }
+  .lead-form-card h3{font-size:22px;font-weight:700;margin:0 0 10px;color:var(--ink);}
+  .lead-form-card p{font-size:15px;color:var(--slate);line-height:1.6;margin:0 0 24px;}
+  .cr-embed{width:100%;height:230px;border:none;}
+  .form-note{font-size:12px;color:var(--slate);margin:14px 0 0;line-height:1.5;}
+  .lead-error{color:#c0392b;font-size:14px;margin-top:10px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--deep-space);padding:24px 0;text-align:center;}
+  footer p{margin:0;font-size:13px;color:rgba(255,255,255,.5);}
+
+  @media (max-width:760px){
+    nav.links{display:none;}
+    h1{font-size:36px;}
+    .hero-promise{font-size:16px;}
+    section{padding:56px 0;}
+    h2{font-size:26px;margin-bottom:32px;}
+    .benefit-grid{grid-template-columns:1fr;}
+    .bridge-box{flex-direction:column;text-align:center;padding:24px;}
+    .testimonial-card{padding:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" id="logo-home" class="logo" style="text-decoration:none;"><span class="kiber">KiBer</span><span class="ar">AR</span></a>
+    <nav class="links">
+      <a href="#vorteile">Vorteile</a>
+      <a href="#stimme">Stimme</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="mailto:info@kiberar.de?subject=Terminanfrage%20Buchhaltungsagent&body=Guten%20Tag%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20den%20Buchhaltungsagenten%20und%20m%C3%B6chte%20gerne%20einen%20Termin%20vereinbaren.%0A%0AName%3A%0ABetrieb%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn btn-primary btn-nav">Termin buchen</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-blob-layer">
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+  </div>
+  <div class="container hero-inner">
+    <h1 class="reveal">Schluss mit dem monatlichen Buchhaltungs-<span class="swash-word">Chaos<svg class="swash-svg" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path class="swash-path" pathLength="1" d="M2,12 C 30,4 50,18 75,10 C 100,2 120,17 145,9 C 165,3 180,13 198,7" fill="none" stroke="#06D6A0" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
+    <p class="hero-promise reveal">Der Buchhaltungsagent sammelt und ordnet Ihre Belege automatisch aus E-Mail-Postfach und Rechnungsprogrammen — Sie müssen nichts selbst sortieren. Jeden Monat bekommen Sie einfach den fertigen Bericht für Ihren Steuerberater.</p>
+    <a href="mailto:info@kiberar.de?subject=Terminanfrage%20Buchhaltungsagent&body=Guten%20Tag%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20den%20Buchhaltungsagenten%20und%20m%C3%B6chte%20gerne%20einen%20Termin%20vereinbaren.%0A%0AName%3A%0ABetrieb%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn btn-white btn-hero reveal">Termin buchen</a>
+  </div>
+</section>
+
+<section id="vorteile" class="benefits">
+  <div class="container">
+    <span class="kicker">Was sich für Sie ändert</span>
+    <h2 class="reveal">So sieht Ihr Alltag ohne Belegstress aus</h2>
+    <div class="benefit-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Sie sehen auf einen Blick, wie es um Ihre Zahlen steht — ganz ohne eigene Rechnerei</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Ihr Steuerberater bekommt fertig sortierte Unterlagen — keine Rückfragen mehr</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Ihre Abende und Wochenenden gehören wieder Ihnen, nicht der Zettelwirtschaft</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stimme">
+  <div class="container">
+    <span class="kicker">Aus der Praxis</span>
+    <h2 class="reveal">Das sagt ein Kunde über den Buchhaltungsagenten</h2>
+    <div class="testimonial-card reveal">
+      <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2 0-3 1.5-3 3.5S5 15 7 15s3-1.5 3-3.5S9.5 8 8 8"/><path d="M17 8c-2 0-3 1.5-3 3.5s1 3.5 3 3.5 3-1.5 3-3.5S19 8 18 8"/></svg>
+      <p class="quote">"Meine Belege lagen früher im Auto, in der Werkstatt, überall verstreut. Jetzt sortiert der Buchhaltungsagent alles vollautomatisch, und ich bekomme am Monatsende einen fertigen Bericht für meinen Steuerberater."</p>
+      <p class="t-name">Malermeister Müller, Bremen</p>
+      <p class="t-role">6 Mitarbeitende</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="bridge-box reveal">
+      <div class="bridge-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <p>Sie behalten die volle Kontrolle — Ihre Belege bleiben auf Ihrem eigenen Rechner, nicht in einer fremden Cloud.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <span class="kicker">Häufige Fragen</span>
+    <h2 class="reveal">Kurz beantwortet</h2>
+    <div class="faq-wrap reveal">
+      <details class="faq-item">
+        <summary>Ist der Ablauf wirklich DSGVO-konform?<span class="faq-plus"></span></summary>
+        <p class="faq-answer">Ja. Ihre Belege werden geordnet auf Ihrem eigenen PC abgelegt statt bei einem Cloud-Anbieter außerhalb Ihrer Kontrolle.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Ist die Einrichtung kompliziert für mich?<span class="faq-plus"></span></summary>
+        <p class="faq-answer">Nein, Sie brauchen kein technisches Verständnis. Die komplette Einrichtung übernehmen wir als Dienstleister für Sie.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Kann ich jederzeit kündigen?<span class="faq-plus"></span></summary>
+        <p class="faq-answer">Ja. Es gibt keine Mindestlaufzeit — Sie können zum jeweils nächsten Monat kündigen.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="lead-form-wrap">
+  <div class="container">
+    <div class="lead-form-card reveal">
+
+      <h3>Bleiben Sie auf dem Laufenden</h3>
+      <p>Kurze Infos rund um den Buchhaltungsagenten — direkt in Ihr Postfach, jederzeit abbestellbar.</p>
+      <iframe
+        src="https://flow.cleverreach.com/fl/3e545ffa-7477-4325-a00b-fa6a8894d5ff/"
+        title="Anmeldeformular"
+        class="cr-embed"
+        loading="lazy">
+      </iframe>
+      <p class="form-note">Nach der Anmeldung bekommen Sie eine Bestätigungs-E-Mail (Double-Opt-in) — erst nach Ihrer Bestätigung sind Sie eingetragen.</p>
+
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <p class="reveal">Buchen Sie Ihren Termin für ein kurzes, unverbindliches Gespräch.</p>
+    <a href="mailto:info@kiberar.de?subject=Terminanfrage%20Buchhaltungsagent&body=Guten%20Tag%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20den%20Buchhaltungsagenten%20und%20m%C3%B6chte%20gerne%20einen%20Termin%20vereinbaren.%0A%0AName%3A%0ABetrieb%3A%0A%0AViele%20Gr%C3%BC%C3%9Fe" class="btn btn-white btn-hero reveal">Termin buchen</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 KiBerAR. Buchhaltungsagent für Handwerksbetriebe.</p>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+
+  var logoHome = document.getElementById('logo-home');
+  if(logoHome){
+    logoHome.addEventListener('click', function(e){
+      e.preventDefault();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* Anmeldeformular läuft jetzt komplett innerhalb des eingebetteten
+     CleverReach-iframes — kein eigenes JS mehr nötig, deren Seite
+     übernimmt Validierung, Versand und die Erfolgsanzeige selbst. */
+
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.15, rootMargin:'0px 0px -60px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+  window.setTimeout(function(){
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el){ el.classList.add('is-visible'); });
+  }, 2500);
+
+  var swashPath = document.querySelector('.swash-path');
+  if(swashPath){ window.setTimeout(function(){ swashPath.classList.add('is-drawn'); }, 450); }
+
+  var checkPaths = document.querySelectorAll('.benefit-check path');
+  if('IntersectionObserver' in window && checkPaths.length){
+    var checkIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('is-drawn');
+        checkIO.unobserve(entry.target);
+      });
+    },{threshold:0.5});
+    checkPaths.forEach(function(p){ checkIO.observe(p); });
+  }
+  window.setTimeout(function(){
+    checkPaths.forEach(function(p){ p.classList.add('is-drawn'); });
+  }, 3000);
+</script>
+
+</body>
+</html>
