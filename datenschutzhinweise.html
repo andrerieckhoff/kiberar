@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzhinweise — KiBerAR</title>
+<style>
+  :root{
+    --blue:#0084FF;
+    --deep-blue:#0066CC;
+    --cyan:#00BCD4;
+    --bright-cyan:#00D4FF;
+    --green:#06D6A0;
+    --ink:#1a1a2e;
+    --deep-space:#0a0e27;
+    --slate:#5a6c7d;
+    --mist:#f0f4f8;
+    --sky:#E0F7FF;
+    --paper:#ffffff;
+    --nav-h:76px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--blue);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .container{max-width:760px;margin:0 auto;padding:0 24px;}
+
+  header.nav{
+    position:sticky;top:0;z-index:100;
+    height:var(--nav-h);
+    display:flex;align-items:center;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(0,132,255,.08);
+  }
+  .nav-inner{
+    width:100%;max-width:1120px;margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .logo-link{text-decoration:none;display:flex;flex-direction:column;}
+  .logo{font-size:22px;font-weight:800;letter-spacing:-0.01em;display:flex;align-items:baseline;white-space:nowrap;}
+  .logo .kiber{color:var(--blue);}
+  .logo .ar{
+    background:linear-gradient(135deg,var(--blue),var(--green));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .logo-sub{font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--blue);text-transform:uppercase;margin-top:2px;}
+  .legal-links{display:flex;gap:20px;font-size:14px;font-weight:600;}
+  .legal-links a{color:var(--slate);}
+  .legal-links a.active{color:var(--blue);}
+
+  main{padding:64px 0 96px;}
+  .back-link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:14px;font-weight:600;color:var(--blue);
+    margin-bottom:32px;
+  }
+  .back-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+  .kicker{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--blue);margin-bottom:12px;
+  }
+  h1{font-size:40px;font-weight:700;letter-spacing:-0.01em;margin:0 0 8px;color:var(--ink);}
+  .stand{font-size:14px;color:var(--slate);margin:0 0 40px;}
+
+  .section{margin-bottom:36px;}
+  .section-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:10px;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;font-size:14px;font-weight:700;
+    margin-right:12px;flex-shrink:0;
+  }
+  .section-title{
+    display:flex;align-items:center;gap:0;
+    font-size:20px;font-weight:700;color:var(--ink);
+    margin:0 0 14px;
+  }
+  .section p{font-size:16px;line-height:1.75;color:var(--ink);margin:0 0 14px;}
+  .section p:last-child{margin-bottom:0;}
+  .section ul{margin:0 0 14px;padding-left:20px;}
+  .section li{font-size:16px;line-height:1.75;color:var(--ink);margin-bottom:6px;}
+  .section-body{
+    background:var(--mist);border-radius:20px;padding:28px 32px;
+    margin-left:44px;
+  }
+
+  .highlight{
+    font-size:14px;color:var(--slate);line-height:1.6;
+    padding:20px 24px;border-left:3px solid var(--green);background:rgba(6,214,160,.06);
+    border-radius:0 16px 16px 0;margin:0 0 40px;
+  }
+
+  footer{
+    background:var(--deep-space);color:#fff;
+    padding:28px 0;border-top:1px solid rgba(255,255,255,.08);
+  }
+  .footer-inner{
+    max-width:1120px;margin:0 auto;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  .footer-logo{font-size:16px;font-weight:800;}
+  .footer-logo .kiber{color:var(--blue);}
+  .footer-logo .ar{background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  footer p{margin:0;font-size:13px;color:rgba(255,255,255,.5);}
+  footer a{color:rgba(255,255,255,.7);}
+
+  @media (max-width:600px){
+    h1{font-size:32px;}
+    .section-body{margin-left:0;padding:22px;border-radius:16px;}
+    .legal-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo-link">
+      <span class="logo"><span class="kiber">KiBer</span><span class="ar">AR</span></span>
+      <span class="logo-sub">KI-Beratung &amp; Strategie</span>
+    </a>
+    <nav class="legal-links">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutzhinweise.html" class="active">Datenschutzhinweise</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <a href="/" class="back-link">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      Zurück zur Website
+    </a>
+
+    <span class="kicker">Rechtliches</span>
+    <h1>Datenschutzhinweise</h1>
+    <p class="stand">Stand: Juli 2026</p>
+
+    <div class="highlight">
+      Diese Website verzichtet bewusst auf Cookies, Analyse-Tools, externe Schriftarten und Tracking — es werden keine Nutzerprofile erstellt.
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">1</span>Verantwortlicher</h2>
+      <div class="section-body">
+        <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+        <p>
+          FLATNO24 Ltd.<br>
+          Evropis 33<br>
+          8830 Polis Chrysochous<br>
+          Zypern<br>
+          E-Mail: <a href="mailto:info@kiberar.de">info@kiberar.de</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">2</span>Allgemeines zur Datenverarbeitung</h2>
+      <div class="section-body">
+        <p>Diese Website verzichtet bewusst auf Cookies, Analyse-Tools (z. B. Google Analytics), externe Schriftarten (Google Fonts) und sonstige Tracking-Dienste. Es werden keine Nutzerprofile erstellt und keine Daten an Werbenetzwerke weitergegeben.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">3</span>Server-Logfiles</h2>
+      <div class="section-body">
+        <p>Beim Aufruf dieser Website erhebt unser Hosting-Anbieter (Hostinger) automatisch technische Informationen, die Ihr Browser übermittelt. Der Server steht in einem Rechenzentrum in Frankfurt am Main, Deutschland — es findet keine Datenübermittlung ins Ausland statt.</p>
+        <p>Erhoben werden:</p>
+        <ul>
+          <li>IP-Adresse</li>
+          <li>Datum und Uhrzeit der Anfrage</li>
+          <li>Aufgerufene Seite</li>
+          <li>Verwendeter Browser und Betriebssystem</li>
+          <li>Referrer-URL (die zuvor besuchte Seite)</li>
+        </ul>
+        <p>Diese Daten dienen ausschließlich der technischen Bereitstellung und Sicherheit der Website und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Betrieb der Website).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">4</span>Kontaktaufnahme per E-Mail</h2>
+      <div class="section-body">
+        <p>Wenn Sie uns über das Kontaktformular oder direkt per E-Mail erreichen, öffnet sich lediglich Ihr eigenes E-Mail-Programm mit einer vorausgefüllten Nachricht — die Website selbst überträgt dabei keine Daten an uns oder an einen Server. Erst wenn Sie die E-Mail aus Ihrem eigenen Postfach tatsächlich versenden, verarbeiten wir die darin enthaltenen Angaben (z. B. Name, E-Mail-Adresse, Betrieb, Nachricht), um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anfrage zur Anbahnung eines Vertrags) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">5</span>Speicherdauer</h2>
+      <div class="section-body">
+        <p>Wir speichern personenbezogene Daten nur so lange, wie es für die Beantwortung Ihrer Anfrage oder zur Erfüllung gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">6</span>Ihre Rechte</h2>
+      <div class="section-body">
+        <p>Sie haben jederzeit das Recht auf:</p>
+        <ul>
+          <li>Auskunft über die von uns verarbeiteten Daten (Art. 15 DSGVO)</li>
+          <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+          <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>
+          <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+          <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+          <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        </ul>
+        <p>Wenden Sie sich dafür einfach an <a href="mailto:info@kiberar.de">info@kiberar.de</a>.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title"><span class="section-num">7</span>Beschwerderecht</h2>
+      <div class="section-body">
+        <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt — etwa bei der zypriotischen Aufsichtsbehörde (Office of the Commissioner for Personal Data Protection) oder bei der für Ihren Wohnort zuständigen deutschen Landesdatenschutzbehörde.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo"><span class="kiber">KiBer</span><span class="ar">AR</span></span>
+    <p>© 2026 FLATNO24 Ltd. · <a href="mailto:info@kiberar.de">info@kiberar.de</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
