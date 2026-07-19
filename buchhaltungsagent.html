@@ -1255,6 +1255,28 @@
 </div>
 
 <script>
+  /* Sicherung gegen Browser-Erweiterungen, die eigene Elemente an <body>
+     anhängen und dadurch die Seite über den Footer hinaus scrollbar machen. */
+  (function(){
+    var allowed = ['SCRIPT','HEADER','SECTION','FOOTER'];
+    var allowedClasses = ['scroll-progress','sticky-bar','nudge'];
+    function isOwnContent(el){
+      if(allowed.indexOf(el.tagName) !== -1) return true;
+      return allowedClasses.some(function(cls){ return el.classList.contains(cls); });
+    }
+    function guard(node){
+      if(node.nodeType === 1 && !isOwnContent(node)){
+        node.style.setProperty('display','none','important');
+      }
+    }
+    Array.prototype.forEach.call(document.body.children, guard);
+    new MutationObserver(function(mutations){
+      mutations.forEach(function(m){
+        Array.prototype.forEach.call(m.addedNodes, guard);
+      });
+    }).observe(document.body, {childList:true});
+  })();
+
   document.documentElement.classList.add('js');
   var els = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
