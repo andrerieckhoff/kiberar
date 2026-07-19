@@ -208,8 +208,12 @@
   .lead-error{color:#c0392b;font-size:14px;margin-top:10px;}
 
   /* ---------- FOOTER ---------- */
-  footer{background:var(--deep-space);padding:24px 0;text-align:center;}
-  footer p{margin:0;font-size:13px;color:rgba(255,255,255,.5);}
+  footer{background:var(--deep-space);padding:28px 0;}
+  .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .footer-inner p{margin:0;font-size:13px;color:rgba(255,255,255,.5);}
+  .footer-legal{display:flex;gap:20px;}
+  .footer-legal a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s ease;}
+  .footer-legal a:hover{color:#fff;}
 
   @media (max-width:760px){
     nav.links{display:none;}
@@ -341,7 +345,13 @@
 </section>
 
 <footer>
-  <p>© 2026 KiBerAR. Buchhaltungsagent für Handwerksbetriebe.</p>
+  <div class="container footer-inner">
+    <p>© 2026 KiBerAR. Buchhaltungsagent für Handwerksbetriebe.</p>
+    <nav class="footer-legal">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutzhinweise.html">Datenschutzhinweise</a>
+    </nav>
+  </div>
 </footer>
 
 <script>
